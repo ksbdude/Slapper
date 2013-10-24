@@ -22,14 +22,7 @@ public class slapper extends JavaPlugin{
         // TODO Insert logic to be performed when the plugin is disabled
     	getLogger().info("onDisable has been invoked!");
     }
-    public void onSignChange(SignChangeEvent event) {
-        Player p = event.getPlayer();
-        if(event.getLine(0).contains("joinslapper")){
-             event.setLine(0, "§4 Slapper");
-             event.setLine(1, "§2 join");
-             p.sendMessage(ChatColor.BLUE + "MySign successfully created!");
-        }
-    }
+    
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -42,16 +35,17 @@ public class slapper extends JavaPlugin{
                 // Do other stuff if you need to
             }
         }
+    }
+    public void onSignChange(SignChangeEvent event) {
+        Player p = event.getPlayer();
+        if(event.getLine(0).contains("[MySign]")){
+             event.setLine(0, "§4[MySign]");
+             event.setLine(1, "§2"+p.getName());
+             p.sendMessage(ChatColor.BLUE + "MySign successfully created!");
+        }
+    }
  
 }
-}
-
-
-
-
-
-
-
 
 
 

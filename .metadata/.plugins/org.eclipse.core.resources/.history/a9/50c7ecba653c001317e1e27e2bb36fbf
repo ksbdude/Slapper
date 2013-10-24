@@ -1,0 +1,32 @@
+package io.github.ksbdude;
+
+import org.bukkit.block.Block;
+import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.material.Sign;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class slapper extends JavaPlugin{
+    @Override
+    public void onEnable(){
+        // TODO Insert logic to be performed when the plugin is enabled
+    	getLogger().info("onEnable has been invoked!");
+    }
+ 
+    @Override
+    public void onDisable() {
+        // TODO Insert logic to be performed when the plugin is disabled
+    	getLogger().info("onDisable has been invoked!");
+    }
+    public void onSignChange (final SignChangeEvent event) {
+    	  String signText = "";
+    	  for (int i=0; i<4; i++) if (event.getLines()[i] != "") signText += event.getLines()[i];
+    	  plugin.getServer().broadcastMessage(signText); // Debug
+    	  Block b = event.getBlock();
+    	  if (b.getTypeId() == 0x3f) {
+    	    // This is sign indeed
+    	    Sign s = (Sign) b.getState();
+    	    plugin.getServer().broadcastMessage("Line 1: " + s.getLine(0)); // Debug
+    	  }
+    	}
+    
+}
